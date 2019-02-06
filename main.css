@@ -1,0 +1,70 @@
+body {
+  font-size: 16px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: white;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+
+.container {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #ff7f11;
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+.container ul {
+  list-style: none;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0rem;
+  margin: auto 0rem;
+}
+
+.option {
+  box-sizing: border-box;
+  
+  width: 10rem;
+  height: 10rem;
+  margin: 3rem;
+  font-size: 3rem;
+  font-weight: 700;
+  
+  border: 10px solid white;
+  border-radius: 3rem;
+  color: white;
+  background-color: #ff7f11;
+  
+  transition: width 1s, height 1s;
+}
+
+.option:hover {
+  width: 11rem;
+  height: 11rem;
+
+  transition: width 1s, height 1s;
+}
+
+#counter {
+  margin-top: auto;
+  margin-left: auto;
+  
+  font-weight: 300;
+  font-size: 3rem;
+}
