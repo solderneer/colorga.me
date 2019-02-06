@@ -1,4 +1,5 @@
-var randomMC = require('./randomColor.js');
-var color = randomMC.getColor();
+// Importing basic assets
+import 'normalize.css'
+import './main.css'
 
-console.log(color);
+console.log(Date());
