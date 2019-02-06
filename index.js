@@ -3,12 +3,15 @@ import 'normalize.css'
 import './main.css'
 
 // Logic imports
-import randomMC from 'random-material-color'
+import randomColor from 'randomcolor'
 
 let randArray = ['one', 'two', 'three']
+const startShift = 50
+let correctColor = ''
+let counter = 0;
 
 function setColor() {
-  let newColor = randomMC.getColor()
+  let newColor = randomColor()
 
   // Setting to random color
   document.querySelector('.container').style.backgroundColor = newColor
@@ -21,13 +24,34 @@ function setColor() {
   let wrongOptionTwo = Math.floor(Math.random() * 3)
   
   while (wrongOptionOne === wrongOptionTwo)
-    wrongOptionTwo = Math.floor((Math.random() * 3) + 1)
+    wrongOptionTwo = Math.floor(Math.random() * 3)
 
-  document.querySelector(`#${randArray[wrongOptionOne]}`).style.filter = "hue-rotate(10deg)"
-  document.querySelector(`#${randArray[wrongOptionTwo]}`).style.filter = "hue-rotate(-10deg)"
-
-
-  return randArray[(3 - wrongOptionOne - wrongOptionTwo)]
+	const shift = Math.max((startShift - (counter * 3)), 8)
+	correctColor = randArray[(3 - wrongOptionOne - wrongOptionTwo)]
+	
+	document.querySelector(`#${randArray[wrongOptionOne]}`).style.filter = `hue-rotate(${shift}deg)`
+  document.querySelector(`#${randArray[wrongOptionTwo]}`).style.filter = `hue-rotate(-${shift}deg)`
+	document.querySelector(`#${correctColor}`).style.filter = ""
 }
 
-console.log(setColor())
+function checkColor(buttonId) {
+	if (correctColor === buttonId) {
+		counter++
+	} else {
+		counter = 0
+	}
+
+	document.querySelector('#counter').innerText = counter.toString()
+	setColor()
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 	
+	setColor()
+	
+	// Setting up all the event listeners
+	for (const elem of document.querySelectorAll('.option')) {
+		elem.addEventListener('click', (elem) => {
+			checkColor(elem.target.id)
+		})	
+	}	
+});
