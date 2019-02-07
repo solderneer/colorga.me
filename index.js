@@ -45,6 +45,7 @@ function checkColor(buttonId) {
 	setColor()
 }
 
+// MAIN CODE
 document.addEventListener("DOMContentLoaded", function(event) { 	
 	setColor()
 	
@@ -52,6 +53,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	for (const elem of document.querySelectorAll('.option')) {
 		elem.addEventListener('click', (elem) => {
 			checkColor(elem.target.id)
-		})	
-	}	
+		})
+	}
+
+  window.addEventListener('keypress', function (event) {
+    switch(event.keyCode) {
+      case 49:
+        console.log(1)
+        checkColor('one')
+        break
+      case 50:
+        console.log(2)
+        checkColor('two')
+        break
+      case 51:
+        console.log(3)
+        checkColor('three')
+        break
+      default:
+        break
+    }
+  })
+
 });
