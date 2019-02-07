@@ -2,11 +2,10 @@
   "name": "colorgame",
   "version": "1.0.0",
   "description": "A simple game with colors :o",
-  "main": "index.js",
   "repository": "git@github.com:solderneer/colorgame.git",
   "author": "Sudharshan <solderneer@gmail.com>",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "devDependencies": {
     "autoprefixer": "^9.4.7",
     "babel-cli": "^6.26.0",
@@ -15,7 +14,7 @@
     "parcel-bundler": "^1.11.0"
   },
   "scripts": {
-    "start": "parcel -p 3000 index.html",
+    "serve": "parcel -p 3000 index.html",
     "build": "parcel build index.html"
   },
   "dependencies": {
