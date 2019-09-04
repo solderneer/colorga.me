@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    colorgame:
+        build: .
+        restart: always
+        expose:
+         - "80"
+        networks:
+         - proxy
+         - default
+        labels:
+         - "traefik.backend=colorgame"
+         - "traefik.docker.network=proxy"
+         - "traefik.basic.frontend.rule=Host:colorga.me"
+         - "traefik.enable=true"
+         - "traefik.basic.port=80"
+
+networks:
+    proxy:
+        external: true
