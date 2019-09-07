@@ -14,7 +14,7 @@ function setColor() {
   let newColor = randomColor()
 
   // Setting to random color
-  document.querySelector('.container').style.backgroundColor = newColor
+  document.querySelector('html').style.backgroundColor = newColor
   
   for (const elem of document.querySelectorAll('.option')) {
     elem.style.backgroundColor = newColor
@@ -46,6 +46,9 @@ function checkColor(buttonId) {
 }
 
 // MAIN CODE
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 document.addEventListener("DOMContentLoaded", function(event) { 	
 	setColor()
 	
