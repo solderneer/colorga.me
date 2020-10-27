@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: colorgame
+  labels:
+    app: colorgame
+spec:
+  selector:
+    matchLabels:
+      app: colorgame
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: colorgame
+    spec:
+      containers:
+      - name: colorgame
+        image: registry.digitalocean.com/athens/colorgame:latest
+        ports:
+        - name: web
+          containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: colorgame
+
+spec:
+  ports:
+    - protocol: TCP
+      name: web
+      port: 80
+  selector:
+    app: colorgame
+
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: colorgame-route
+  namespace: default
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`colorga.me`)
+    kind: Rule
+    services:
+    - name: colorgame
+      port: 80
+  tls:
+    certResolver: myresolver
