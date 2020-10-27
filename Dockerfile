@@ -1,14 +1,15 @@
-FROM node:8-jessie as builder
+FROM node:14-buster-slim as builder
 
 WORKDIR /colorgame
 COPY package.json /colorgame
+COPY yarn.lock /colorgame
 
 RUN yarn
 
 COPY . /colorgame
 RUN yarn build
 
-FROM kyma/docker-nginx
-COPY --from=builder /colorgame/dist /var/www
-CMD 'nginx'
-
+FROM nginx:stable-alpine as production-stage
+COPY --from=builder /colorgame/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
